@@ -1,0 +1,48 @@
+CREATE DATABASE school;
+USE school;
+
+CREATE TABLE classes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(10) NOT NULL
+);
+
+INSERT INTO classes (name) VALUES 
+('11a'),
+('11b'),
+('11c'),
+('12a'),
+('12b'),
+('12c');
+
+CREATE TABLE subjects (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
+
+INSERT INTO subjects (name) VALUES 
+('math'),
+('history'),
+('biology'),
+('chemistry'),
+('physics'),
+('informatics'),
+('alchemy'),
+('astrology');
+
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    gender INT NOT NULL,
+    class_id INT,
+    FOREIGN KEY (class_id) REFERENCES classes(id)
+);
+
+
+CREATE TABLE grades (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    subject_id INT,
+    grade INT NOT NULL,
+    FOREIGN KEY (student_id) REFERENCES students(id),
+    FOREIGN KEY (subject_id) REFERENCES subjects(id)
+);
